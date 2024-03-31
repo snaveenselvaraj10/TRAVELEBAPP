@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tripplanning_dbModelStoreContainer" CdmEntityContainer="tripplanning_dbEntities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="packid" ColumnName="packid" />
+          <ScalarProperty Name="no_of_days" ColumnName="no_of_days" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="custid" ColumnName="custid" />
+          <ScalarProperty Name="custname" ColumnName="custname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookings">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.booking">
+        <MappingFragment StoreEntitySet="booking">
+          <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="couponcode" ColumnName="couponcode" />
+          <ScalarProperty Name="enddate" ColumnName="enddate" />
+          <ScalarProperty Name="startdate" ColumnName="startdate" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="custid" ColumnName="custid" />
+          <ScalarProperty Name="packid" ColumnName="packid" />
+          <ScalarProperty Name="bookid" ColumnName="bookid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="coupons">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.coupon">
+        <MappingFragment StoreEntitySet="coupon">
+          <ScalarProperty Name="tilldate" ColumnName="tilldate" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="couponcode" ColumnName="couponcode" />
+          <ScalarProperty Name="couponid" ColumnName="couponid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="partners">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.partner">
+        <MappingFragment StoreEntitySet="partner">
+          <ScalarProperty Name="companyname" ColumnName="companyname" />
+          <ScalarProperty Name="partnerid" ColumnName="partnerid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logins">
+      <EntityTypeMapping TypeName="tripplanning_dbModel.login">
+        <MappingFragment StoreEntitySet="login">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

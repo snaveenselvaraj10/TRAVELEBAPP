@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64bcf20623b5434f91c4ed9e15ca4888" Name="Diagram1">
+        <EntityTypeShape EntityType="tripplanning_dbModel.admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tripplanning_dbModel.customer" Width="1.5" PointX="3.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tripplanning_dbModel.booking" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="tripplanning_dbModel.coupon" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="tripplanning_dbModel.partner" Width="1.5" PointX="7" PointY="2.25" />
+        <EntityTypeShape EntityType="tripplanning_dbModel.login" Width="1.5" PointX="6.625" PointY="6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

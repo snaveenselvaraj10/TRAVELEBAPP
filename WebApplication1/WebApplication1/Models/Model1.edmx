@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="tripplanning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="packid" />
+          </Key>
+          <Property Name="packid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no_of_days" Type="smallint" />
+          <Property Name="designation" Type="varchar" MaxLength="20" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="bookid" />
+          </Key>
+          <Property Name="bookid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="packid" Type="smallint" />
+          <Property Name="custid" Type="smallint" />
+          <Property Name="price" Type="money" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
+          <Property Name="couponcode" Type="varchar" MaxLength="10" />
+          <Property Name="totalprice" Type="money" />
+          <Property Name="discount" Type="money" />
+        </EntityType>
+        <EntityType Name="coupon">
+          <Key>
+            <PropertyRef Name="couponid" />
+          </Key>
+          <Property Name="couponid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="couponcode" Type="varchar" MaxLength="10" />
+          <Property Name="discount" Type="int" />
+          <Property Name="tilldate" Type="date" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custname" Type="varchar" MaxLength="20" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="partner">
+          <Key>
+            <PropertyRef Name="partnerid" />
+          </Key>
+          <Property Name="partnerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="tripplanning_dbModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="coupon" EntityType="Self.coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="partner" EntityType="Self.partner" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tripplanning_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="packid" />
+          </Key>
+          <Property Name="packid" Type="Int16" Nullable="false" />
+          <Property Name="no_of_days" Type="Int16" />
+          <Property Name="designation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="custid" />
+          </Key>
+          <Property Name="custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="tripplanning_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="bookings" EntityType="tripplanning_dbModel.booking" />
+          <EntitySet Name="coupons" EntityType="tripplanning_dbModel.coupon" />
+          <EntitySet Name="partners" EntityType="tripplanning_dbModel.partner" />
+          <EntitySet Name="logins" EntityType="tripplanning_dbModel.login" />
+        </EntityContainer>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="bookid" />
+          </Key>
+          <Property Name="bookid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="packid" Type="Int16" />
+          <Property Name="custid" Type="Int16" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="couponcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="discount" Type="Decimal" />
+          <Property Name="totalprice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="coupon">
+          <Key>
+            <PropertyRef Name="couponid" />
+          </Key>
+          <Property Name="couponid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="couponcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="tilldate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="partner">
+          <Key>
+            <PropertyRef Name="partnerid" />
+          </Key>
+          <Property Name="partnerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tripplanning_dbModelStoreContainer" CdmEntityContainer="tripplanning_dbEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="packid" ColumnName="packid" />
+                <ScalarProperty Name="no_of_days" ColumnName="no_of_days" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="custname" ColumnName="custname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="couponcode" ColumnName="couponcode" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="packid" ColumnName="packid" />
+                <ScalarProperty Name="bookid" ColumnName="bookid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coupons">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.coupon">
+              <MappingFragment StoreEntitySet="coupon">
+                <ScalarProperty Name="tilldate" ColumnName="tilldate" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="couponcode" ColumnName="couponcode" />
+                <ScalarProperty Name="couponid" ColumnName="couponid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="partners">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.partner">
+              <MappingFragment StoreEntitySet="partner">
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="partnerid" ColumnName="partnerid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logins">
+            <EntityTypeMapping TypeName="tripplanning_dbModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

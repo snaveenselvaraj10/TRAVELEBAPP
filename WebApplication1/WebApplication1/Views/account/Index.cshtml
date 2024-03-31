@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.login
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("submit", "Account", FormMethod.Post, new { id = "popupForm" }))
+{
+    <div>
+        <h1>Admin Login</h1>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <label class="form-label">User Name</label>
+            <input type="text" class="form-control" name="username" placeholder="Admin Name" required>
+        </div>
+        <div class="agile-field-txt">
+            <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+            <input type="password" name="password" placeholder="Enter Password" required="" id="myInput" />
+            <div class="agile_label">
+                <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+                <label class="check" for="check3">Show password</label>
+            </div>
+        </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-success" />
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("myInput");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+        }
+        

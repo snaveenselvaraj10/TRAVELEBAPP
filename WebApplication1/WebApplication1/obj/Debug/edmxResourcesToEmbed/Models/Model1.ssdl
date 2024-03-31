@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tripplanning_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="packid" />
+    </Key>
+    <Property Name="packid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="no_of_days" Type="smallint" />
+    <Property Name="designation" Type="varchar" MaxLength="20" />
+    <Property Name="price" Type="money" />
+  </EntityType>
+  <EntityType Name="booking">
+    <Key>
+      <PropertyRef Name="bookid" />
+    </Key>
+    <Property Name="bookid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="packid" Type="smallint" />
+    <Property Name="custid" Type="smallint" />
+    <Property Name="price" Type="money" />
+    <Property Name="startdate" Type="date" />
+    <Property Name="enddate" Type="date" />
+    <Property Name="couponcode" Type="varchar" MaxLength="10" />
+    <Property Name="totalprice" Type="money" />
+    <Property Name="discount" Type="money" />
+  </EntityType>
+  <EntityType Name="coupon">
+    <Key>
+      <PropertyRef Name="couponid" />
+    </Key>
+    <Property Name="couponid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="couponcode" Type="varchar" MaxLength="10" />
+    <Property Name="discount" Type="int" />
+    <Property Name="tilldate" Type="date" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="custid" />
+    </Key>
+    <Property Name="custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="custname" Type="varchar" MaxLength="20" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="partner">
+    <Key>
+      <PropertyRef Name="partnerid" />
+    </Key>
+    <Property Name="partnerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyname" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="tripplanning_dbModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="booking" EntityType="Self.booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="coupon" EntityType="Self.coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="partner" EntityType="Self.partner" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

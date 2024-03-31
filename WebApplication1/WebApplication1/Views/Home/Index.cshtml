@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to GT holidays</h1>
+    <p style="color:black;">
+    <p class="lead">Best Travel Company in South India | GT Holidays Pvt Ltd</p>
+    <p><a href="https://www.gtholidays.in/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>1.Basic Package <br />Details</h2>
+        <p style="color:black;">
+
+            <ls>
+                <ul>Basic Package</ul><br />
+                <ul>Ooty trip via wayanad</ul><br />
+                <ul>2days+Camp party</ul><br />
+                <ul>Maximum people are allowed</ul><br />
+            </ls>
+                <Button type="submit" onclick="location.href='@Url.Action("Index","booking")'">Book Now</Button>
+
+        <p/>
+    </div>
+    <div class="col-md-4">
+        <h2>2.Advanced Package Details</h2>
+        <p style="color:black;">
+            <ls>
+                <ul>Adnvanced Package</ul><br />
+                <ul>Goa trip via Mysuru</ul><br />
+                <ul>10 days+Camp party</ul><br />
+                <ul>Maximum people are allowed</ul><br />
+            </ls>
+            <Button type="button" onclick="location.href='@Url.Action("Index","booking")'">Book Now</Button>
+
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>3.Platinum Package Details</h2>
+        <p style="color:black;">
+            <ls>
+                <ul>Platinum Package</ul><br />
+                <ul>Malaysya trip via </ul><br />
+                <ul>2days+Camp party</ul><br />
+                <ul>Maximum people allowed</ul><br />
+
+            </ls>
+            <Button type="button" onclick="location.href='@Url.Action("Index","booking")'">Book Now</Button>
+
+        </p>
+    </div>
+</div>

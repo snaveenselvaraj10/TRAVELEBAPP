@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication1.Models.admin>
+
+@{
+    ViewBag.Title = "Packages List";
+}
+@if (TempData["AlertMessage"] != null)
+{
+<div class="alert alert-success">
+   <strong>Success !</strong> @TempData["AlertMessage"]
+</div>
+
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.no_of_days)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.no_of_days)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            <input type="button" class="btn btn-info" value="Edit" onclick="location.href='@Url.Action("Edit","admin", new { id = item.packid })'" />
+            <input type="button" class="btn btn-info" value="Details" onclick="location.href='@Url.Action("Details","admin", new { id = item.packid })'" />
+            <input type="button" class="btn btn-info" value="Delete" onclick="location.href='@Url.Action("Delete","admin", new { id = item.packid })'" />
+        </td>
+    </tr>
+}
+
+</table>

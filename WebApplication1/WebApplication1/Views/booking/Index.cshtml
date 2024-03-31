@@ -1,0 +1,267 @@
+﻿
+@model IEnumerable<WebApplication1.Models.BookingViewModel>
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong> @TempData["AlertMessage"]
+    </div>
+
+}
+<div class="row">
+    <div class="col-sm-4">
+
+        @using (Html.BeginForm("Save", "booking", FormMethod.Post, new { id = "popupForm" }))
+        {
+            <div>
+                <h1>package Booking</h1>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label class="form-label">Package Number</label>
+                    <select class="form-control" id="packid" name="packid" placeholder="Choose package" required>
+                        <option>Please select</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Customer Id</label>
+                    <input type="text" class="form-control" id="custid" name="custid" placeholder="Enter your Reg Id" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" id="custname" name="custname" placeholder="Enter your Name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Booking price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
+
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Enter Coupon Id</label>
+                    <input type="text" class="form-control" id="couponid" name="couponid" placeholder="Enter Coupon" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Discount</label>
+                    <input type="text" class="form-control" id="discount" name="discount" placeholder="Discount" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Total Price</label>
+                    <input type="text" class="form-control" id="totalprice" name="totalprice" placeholder="TotalPrice" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Start date</label>
+                    <input type="date" class="form-control" id="startid" name="startdate" placeholder="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="enddate" name="enddate" placeholder="endDate" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" id="btnRegister" class="btn btn-success" />
+            </div>
+        }
+    </div>
+
+
+    <div class="col-sm-8">
+
+        <table class="table">
+
+            <caption>Booking History</caption>
+            <tr>
+                <th>Pack Id</th>
+                <th>Customer Id</th>
+                <th>Price</th>
+                <th>Total price</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Designation</th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.packid</td>
+                    <td>@item.custid</td>
+                    <td>@item.price</td>
+                    <td>@item.totalprice</td>
+                    <td>@item.startdate</td>
+                    <td>@item.enddate</td>
+                    <td>@item.designation</td>
+                </tr>
+
+            }
+
+
+        </table>
+    </div>
+
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+        getPack();
+        getPrice();
+        load();
+        function load() {
+            $("#custid").attr("disabled", "disabled");
+            $("#custname").attr("disabled", "disabled");
+            $("#price").attr("disabled", "disabled");
+            $("#startid").attr("disabled", "disabled");
+            $("#endid").attr("disabled", "disabled");
+        }
+
+        function getPack() {
+
+            $.ajax({
+                type: 'GET',
+                url: '/booking/Getpack',
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        $("#packid").append($("<option/>", {
+                            text: data[i].packid
+                        }));
+                    }
+                }
+
+
+            });
+
+        }
+        function getPrice() {
+            $("#packid").change(function (e) {
+
+                $.ajax({
+
+                    type: "POST",
+                    url: '/booking/Getprice?id=' + $("#packid").val(),
+                    datatype: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#price").val(data)
+
+                    }
+
+
+                });
+                return true;
+            });
+            
+
+        }
+        $("#packid").change(function () {
+            available();
+
+        });
+        function available() {
+            $.ajax({
+
+                type: "POST",
+                url: '/booking/Getpack?packid=' + $("#packid").val(),
+                datatype: 'JSON',
+                success: function (data) {
+                    console.log(data);
+
+                    var packavail = data;
+                    if (packavail != null) {
+                        $("#custid").removeAttr('disabled');
+                        $("#custname").removeAttr('disabled');
+                        $("#price").removeAttr('disabled');
+                        $("#startid").removeAttr('disabled');
+                        $("#endid").removeAttr('disabled');
+
+                    } else {
+
+                        $("#custid").attr("disabled", "disabled");
+                        $("#custname").attr("disabled", "disabled");
+                        $("#price").attr("disabled", "disabled");
+                        $("#startid").attr("disabled", "disabled");
+                        $("#endid").attr("disabled", "disabled");
+                    }
+
+
+                }
+
+
+            });
+        }
+
+        getCustomer();
+        function getCustomer() {
+
+            $("#custid").keyup(function (e) {
+                $.ajax({
+
+                    type: "POST",
+                    url: '/booking/Getid?id=' + $("#custid").val(),
+                    datatype: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#custname").val(data)
+
+                    }
+
+
+                });
+                return true;
+            });
+
+        }
+       
+        ApplyCouponCode();
+        function ApplyCouponCode() {
+
+            $("#couponid").keyup(function (e) {
+                $.ajax({
+
+                    type: "POST",
+                    url: '/booking/ApplyCouponCode?id=' + $("#couponid").val(),
+                    datatype: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#discount").val(data)
+
+                    }
+
+
+                });
+                return true;
+            });
+        }
+        getTotalPrice();
+        function getTotalPrice() {
+            $("#packid").change(function (e) {
+
+                $.ajax({
+
+                    type: "POST",
+                    url: '/booking/GetTotalPrice?id=' + $("#packid").val(),
+                    datatype: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#totalprice").val(data)
+
+                    }
+
+
+                });
+                return true;
+            });
+
+        }
+    </script>
+}
+
+
+

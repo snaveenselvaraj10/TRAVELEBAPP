@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication1.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong> @TempData["AlertMessage"]
+    </div>
+
+}
+<h2>Customer Index</h2>
+
+<p>
+    <input type="button" class="btn btn-info" value="Create" onclick="location.href='@Url.Action("Create","customer")'" />
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.custname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.custname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+               <input type="button" class="btn btn-info" value="Edit" onclick="location.href='@Url.Action("Edit","customer", new { id = item.custid })'"/>
+               <input type="button" class="btn btn-info" value="Details" onclick="location.href='@Url.Action("Details","customer", new { id = item.custid })'" />
+               <input type="button" class="btn btn-info" value="Delete" onclick="location.href='@Url.Action("Delete","customer", new { id = item.custid })'" />
+            </td>
+        </tr>
+    }
+
+</table>

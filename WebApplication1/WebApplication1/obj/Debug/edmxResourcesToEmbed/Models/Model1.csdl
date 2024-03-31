@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tripplanning_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="packid" />
+    </Key>
+    <Property Name="packid" Type="Int16" Nullable="false" />
+    <Property Name="no_of_days" Type="Int16" />
+    <Property Name="designation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="custid" />
+    </Key>
+    <Property Name="custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="custname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="tripplanning_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admins" EntityType="Self.admin" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="bookings" EntityType="tripplanning_dbModel.booking" />
+    <EntitySet Name="coupons" EntityType="tripplanning_dbModel.coupon" />
+    <EntitySet Name="partners" EntityType="tripplanning_dbModel.partner" />
+    <EntitySet Name="logins" EntityType="tripplanning_dbModel.login" />
+  </EntityContainer>
+  <EntityType Name="booking">
+    <Key>
+      <PropertyRef Name="bookid" />
+    </Key>
+    <Property Name="bookid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="packid" Type="Int16" />
+    <Property Name="custid" Type="Int16" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="startdate" Type="DateTime" Precision="0" />
+    <Property Name="enddate" Type="DateTime" Precision="0" />
+    <Property Name="couponcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="discount" Type="Decimal" />
+    <Property Name="totalprice" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="coupon">
+    <Key>
+      <PropertyRef Name="couponid" />
+    </Key>
+    <Property Name="couponid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="couponcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="tilldate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="partner">
+    <Key>
+      <PropertyRef Name="partnerid" />
+    </Key>
+    <Property Name="partnerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,28 @@
+﻿@model WebApplication1.Models.partner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>partner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.companyname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.companyname)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <p style="color:black;"><b>Mahindra Holidays & Resorts India Ltd. (MHRIL),</b>a part of Leisure and Hospitality sector of the Mahindra Group,<br /> offers quality family holidays primarily through vacation ownership<br /> memberships and brings to the industry values such as reliability, trust and customer<br /> satisfaction. Started in 1996, the company's flagship brand ‘Club Mahindra’, today has over<br /> 250,000 members , who can holiday at 100+ resorts in India and abroad.</p>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

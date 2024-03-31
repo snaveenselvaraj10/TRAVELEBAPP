@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Welcome to GT Holidays and Tours</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="~/favicon1.ico" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar">Home</span>
+                    <span class="icon-bar">Account</span>
+                    <span class="icon-bar">Customer</span>
+                    <span class="icon-bar">Booking</span>
+                    <span class="icon-bar">Coupon</span>
+                    <span class="icon-bar">Partner</span>
+                    <span class="icon-bar">About</span>
+                    <span class="icon-bar">Contact</span>
+                </button>
+                @Html.ActionLink("GT HOLIDAYS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Account")</li>       
+                    <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("Booking", "Index", "Booking")</li>
+                    <li>@Html.ActionLink("Coupon", "Index", "Coupon")</li>
+                    <li>@Html.ActionLink("Partners", "Index", "Partners")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <a href="http://www.facebook.com/sharer/sharer.php?
+                     u=@Url.Encode(Request.Url.ToString())&ToString=Url.Encode(Title)"
+               target="_blank">
+                <img src="~/facebook.png" />
+            </a>
+            //share
+            <a href="http://twitter.com/intent/tweet?
+                     u=@Url.Encode(Request.Url.ToString())&ToString=Url.Encode(Title)"
+               target="_blank">
+                <img src="~/twitter.png" />
+            </a>
+            //share
+                <p>&copy; 2022 by GT Holidays Pvt Ltd. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

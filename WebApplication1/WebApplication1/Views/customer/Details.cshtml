@@ -1,0 +1,44 @@
+﻿@model WebApplication1.Models.customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.custname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.custname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <input type="button"
+           value="Edit"
+           onclick="location.href='@Url.Action("Edit", new { id = Model.custid })'"/>
+    @Html.ActionLink("Back to List", "Index")
+</p>
